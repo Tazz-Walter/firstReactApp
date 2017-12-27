@@ -42,38 +42,63 @@ var template = React.createElement(
     )
 );
 
-var user = {
+/* const user = {
     name: 'Walter',
     age: 18,
     location: 'Argentina'
 };
 
 function getLocation(location) {
-    if (location) {
-        return React.createElement(
-            'p',
-            null,
-            'Location: ',
-            location
-        );
+    if(location){
+        return <p>Location: {location}</p>;
     }
 }
 
+const template2 = (
+    <div> 
+    <h1>{user.name ? user.name.toUpperCase() : 'Anonymous'}</h1> 
+    {(user.age && user.age >= 18) && <p> Age: {user.age}</p>} 
+    {getLocation(user.location)}
+    </div>
+); */
+//EVENTS AND ATTRIBUTES
+var count = 0;
+var addOne = function addOne() {
+    count = count + 1;
+    console.log(count);
+};
+var minusOne = function minusOne() {
+    count = count - 1;
+    console.log(count);
+};
+var reset = function reset() {
+    count = 0;
+    console.log(count);
+};
 var template2 = React.createElement(
     'div',
     null,
     React.createElement(
         'h1',
         null,
-        user.name ? user.name.toUpperCase() : 'Anonymous'
+        'count: ',
+        count
     ),
-    user.age && user.age >= 18 && React.createElement(
-        'p',
-        null,
-        ' Age: ',
-        user.age
+    React.createElement(
+        'button',
+        { onClick: addOne },
+        ' +1 '
     ),
-    getLocation(user.location)
+    React.createElement(
+        'button',
+        { onClick: minusOne },
+        ' -1 '
+    ),
+    React.createElement(
+        'button',
+        { onClick: reset },
+        ' reset '
+    )
 );
 
 var appRoot = document.getElementById('app');

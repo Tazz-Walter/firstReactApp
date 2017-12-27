@@ -41,28 +41,30 @@ const template2 = (
 //EVENTS AND ATTRIBUTES
 let count = 0;
 const addOne = () => {
-    count = count + 1;
-    console.log(count);    
+    count++;
+    renderCounterApp();
 };
 const minusOne = () => {
-    count = count - 1;
-    console.log(count);
+    count--;
+    renderCounterApp();
 };
 const reset = () => {
     count = 0;
-    console.log(count);
+    renderCounterApp();
 };
-const template2 = (
-    <div>
-        <h1>count: {count}</h1>
-        <button onClick={addOne}> +1 </button>
-        <button onClick={minusOne}> -1 </button>
-        <button onClick={reset}> reset </button>
-    </div>  
-);
-
-
 
 const appRoot = document.getElementById('app');
 
-ReactDOM.render([template,template2], appRoot);
+const renderCounterApp = () => {
+
+    const template2 = (
+        <div>
+            <h1>count: {count}</h1>
+            <button onClick={addOne}> +1 </button>
+            <button onClick={minusOne}> -1 </button>
+            <button onClick={reset}> reset </button>
+        </div>
+    );
+    ReactDOM.render([template, template2], appRoot);
+}
+renderCounterApp();

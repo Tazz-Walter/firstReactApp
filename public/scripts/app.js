@@ -64,43 +64,47 @@ const template2 = (
 //EVENTS AND ATTRIBUTES
 var count = 0;
 var addOne = function addOne() {
-    count = count + 1;
-    console.log(count);
+    count++;
+    renderCounterApp();
 };
 var minusOne = function minusOne() {
-    count = count - 1;
-    console.log(count);
+    count--;
+    renderCounterApp();
 };
 var reset = function reset() {
     count = 0;
-    console.log(count);
+    renderCounterApp();
 };
-var template2 = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        'count: ',
-        count
-    ),
-    React.createElement(
-        'button',
-        { onClick: addOne },
-        ' +1 '
-    ),
-    React.createElement(
-        'button',
-        { onClick: minusOne },
-        ' -1 '
-    ),
-    React.createElement(
-        'button',
-        { onClick: reset },
-        ' reset '
-    )
-);
 
 var appRoot = document.getElementById('app');
 
-ReactDOM.render([template, template2], appRoot);
+var renderCounterApp = function renderCounterApp() {
+
+    var template2 = React.createElement(
+        'div',
+        null,
+        React.createElement(
+            'h1',
+            null,
+            'count: ',
+            count
+        ),
+        React.createElement(
+            'button',
+            { onClick: addOne },
+            ' +1 '
+        ),
+        React.createElement(
+            'button',
+            { onClick: minusOne },
+            ' -1 '
+        ),
+        React.createElement(
+            'button',
+            { onClick: reset },
+            ' reset '
+        )
+    );
+    ReactDOM.render([template, template2], appRoot);
+};
+renderCounterApp();

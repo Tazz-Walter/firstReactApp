@@ -3,68 +3,45 @@ console.log('App.js is running');
 const app = {
     title: 'this is jsx !!',
     subtitle: 'Awesome ReactJs',
-    options: ['One', 'Two']
+    options: []
 };
 
-const template = (
-    <div> 
-        <p>{app.title}</p> 
-        {app.subtitle && <h1>{app.subtitle}</h1>}
-        <p>{app.options.length > 0 ? 'Here are your options' : 'No options' }</p>
-        <ol>
-            <li>Item one</li>
-            <li>Item two</li>
-        </ol>
-        
-    </div>
-);
-
-/* const user = {
-    name: 'Walter',
-    age: 18,
-    location: 'Argentina'
-};
-
-function getLocation(location) {
-    if(location){
-        return <p>Location: {location}</p>;
+const onFormSubmit = (e) => {
+    e.preventDefault();//stop page refresh
+    console.log('form submited');
+    const option = e.target.elements.option.value;
+    
+    if(option) {
+        app.options.push(option);
+        e.target.elements.option.value="";
+        renderCustom();
     }
+    
+};
+const removeAll = () => {
+    app.options = [];    
+    renderCustom();
 }
-
-const template2 = (
-    <div> 
-    <h1>{user.name ? user.name.toUpperCase() : 'Anonymous'}</h1> 
-    {(user.age && user.age >= 18) && <p> Age: {user.age}</p>} 
-    {getLocation(user.location)}
-    </div>
-); */
-//EVENTS AND ATTRIBUTES
-let count = 0;
-const addOne = () => {
-    count++;
-    renderCounterApp();
-};
-const minusOne = () => {
-    count--;
-    renderCounterApp();
-};
-const reset = () => {
-    count = 0;
-    renderCounterApp();
-};
-
-const appRoot = document.getElementById('app');
-
-const renderCounterApp = () => {
-
-    const template2 = (
-        <div>
-            <h1>count: {count}</h1>
-            <button onClick={addOne}> +1 </button>
-            <button onClick={minusOne}> -1 </button>
-            <button onClick={reset}> reset </button>
+const renderCustom = () => {
+    const template = (
+        <div> 
+            <p>{app.title}</p> 
+            {app.subtitle && <h1>{app.subtitle}</h1>}
+            <p>{app.options.length > 0 ? 'Here are your options' : 'No options' }</p>
+            <p>{app.options.length}</p>
+            <ol>
+                <li>Item one</li>
+                <li>Item two</li>
+            </ol>
+            <form onSubmit={onFormSubmit}>
+                <input type="text" name="option"/>
+                <button>Add Option</button>                
+            </form>
+            <button onClick={removeAll}>Remove All</button>
         </div>
     );
-    ReactDOM.render([template, template2], appRoot);
+    ReactDOM.render(template, appRoot);
 }
-renderCounterApp();
+
+const appRoot = document.getElementById('app');
+renderCustom();

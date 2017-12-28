@@ -23,6 +23,13 @@ var removeAll = function removeAll() {
     app.options = [];
     renderCustom();
 };
+
+var makeDecision = function makeDecision() {
+    var randomNum = Math.floor(Math.random() * app.options.length);
+    var optionSelected = app.options[randomNum];
+    alert(optionSelected);
+    renderCustom();
+};
 var renderCustom = function renderCustom() {
     var template = React.createElement(
         'div',
@@ -41,11 +48,6 @@ var renderCustom = function renderCustom() {
             'p',
             null,
             app.options.length > 0 ? 'Here are your options' : 'No options'
-        ),
-        React.createElement(
-            'p',
-            null,
-            app.options.length
         ),
         React.createElement(
             'ol',
@@ -73,6 +75,11 @@ var renderCustom = function renderCustom() {
             'button',
             { onClick: removeAll },
             'Remove All'
+        ),
+        React.createElement(
+            'button',
+            { disabled: app.options.length < 1, onClick: makeDecision },
+            'what should I do?'
         )
     );
     ReactDOM.render(template, appRoot);

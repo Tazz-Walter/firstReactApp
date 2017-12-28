@@ -22,13 +22,19 @@ const removeAll = () => {
     app.options = [];    
     renderCustom();
 }
+
+const makeDecision = () => {
+    const randomNum = Math.floor(Math.random() * app.options.length);
+    const optionSelected = app.options[randomNum];
+    alert(optionSelected);
+    renderCustom();
+}
 const renderCustom = () => {
     const template = (
         <div> 
             <p>{app.title}</p> 
             {app.subtitle && <h1>{app.subtitle}</h1>}
-            <p>{app.options.length > 0 ? 'Here are your options' : 'No options' }</p>
-            <p>{app.options.length}</p>                
+            <p>{app.options.length > 0 ? 'Here are your options' : 'No options' }</p>                           
             <ol>{ 
                     app.options.map((x) => <li key={x}>Item {x}</li>) 
                 }                
@@ -38,6 +44,7 @@ const renderCustom = () => {
                 <button>Add Option</button>                
             </form>
             <button onClick={removeAll}>Remove All</button>
+            <button disabled={app.options.length < 1} onClick={makeDecision}>what should I do?</button>
         </div>
     );
     ReactDOM.render(template, appRoot);

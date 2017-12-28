@@ -28,10 +28,10 @@ const renderCustom = () => {
             <p>{app.title}</p> 
             {app.subtitle && <h1>{app.subtitle}</h1>}
             <p>{app.options.length > 0 ? 'Here are your options' : 'No options' }</p>
-            <p>{app.options.length}</p>
-            <ol>
-                <li>Item one</li>
-                <li>Item two</li>
+            <p>{app.options.length}</p>                
+            <ol>{ 
+                    app.options.map((x) => <li key={x}>Item {x}</li>) 
+                }                
             </ol>
             <form onSubmit={onFormSubmit}>
                 <input type="text" name="option"/>

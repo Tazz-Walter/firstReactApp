@@ -50,16 +50,14 @@ var renderCustom = function renderCustom() {
         React.createElement(
             'ol',
             null,
-            React.createElement(
-                'li',
-                null,
-                'Item one'
-            ),
-            React.createElement(
-                'li',
-                null,
-                'Item two'
-            )
+            app.options.map(function (x) {
+                return React.createElement(
+                    'li',
+                    { key: x },
+                    'Item ',
+                    x
+                );
+            })
         ),
         React.createElement(
             'form',

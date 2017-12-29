@@ -1,17 +1,12 @@
 'use strict';
 
-var showDetail = function showDetail() {
-    console.log('puto');
-    details.hidden = false;
-    hide.hidden = false;
-    show.hidden = true;
+var visibility = false;
+
+var showToggle = function showToggle() {
+    visibility = !visibility;
+    renderCustom();
 };
-var hideDetail = function hideDetail() {
-    console.log('huevo');
-    details.hidden = true;
-    hide.hidden = true;
-    show.hidden = false;
-};
+
 var renderCustom = function renderCustom() {
     var template = React.createElement(
         'div',
@@ -27,22 +22,13 @@ var renderCustom = function renderCustom() {
         ),
         React.createElement(
             'button',
-            { id: 'show', hidden: false, onClick: showDetail },
-            'Show Details'
+            { onClick: showToggle },
+            visibility ? 'Hide Details' : 'Show Details'
         ),
-        React.createElement(
-            'button',
-            { id: 'hide', hidden: true, onClick: hideDetail },
-            'Hide Details'
-        ),
-        React.createElement(
+        visibility && React.createElement(
             'div',
-            { hidden: true, id: 'details' },
-            React.createElement(
-                'p',
-                null,
-                'Detalles habia q escribir algo....'
-            )
+            null,
+            'Detalles habia q escribir algo....'
         )
     );
     ReactDOM.render(template, appRoot);

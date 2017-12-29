@@ -1,7 +1,7 @@
 console.log('App.js is running');
 
 const app = {
-    title: 'this is jsx !!',
+    title: 'JSX !!',
     subtitle: 'Awesome ReactJs',
     options: []
 };

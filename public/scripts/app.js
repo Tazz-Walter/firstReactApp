@@ -20,9 +20,8 @@ var IndecisionApp = function (_React$Component) {
         _this.handlePick = _this.handlePick.bind(_this);
         _this.handleAddOption = _this.handleAddOption.bind(_this);
         _this.state = {
-            title: 'Indecision',
-            subitle: 'sub-Header time! give life a chance!',
-            options: []
+            subtitle: 'sub-Header time! give life a chance!',
+            options: props.options
         };
         return _this;
     }
@@ -65,7 +64,7 @@ var IndecisionApp = function (_React$Component) {
             return React.createElement(
                 'div',
                 null,
-                React.createElement(Header, { title: this.state.title, subtitle: this.state.subtitle }),
+                React.createElement(Header, { subtitle: this.state.subtitle }),
                 React.createElement(Action, {
                     hasOptions: this.state.options.length > 0,
                     handlePick: this.handlePick
@@ -84,10 +83,12 @@ var IndecisionApp = function (_React$Component) {
 
     return IndecisionApp;
 }(React.Component);
-//changing to stateless functional component
 
+IndecisionApp.defaultProps = {
+    options: []
 
-var Header = function Header(props) {
+    //changing to stateless functional component
+};var Header = function Header(props) {
     return React.createElement(
         'div',
         null,
@@ -96,15 +97,19 @@ var Header = function Header(props) {
             null,
             props.title
         ),
-        React.createElement(
+        props.subtitle && React.createElement(
             'h2',
             null,
             props.subtitle
         )
     );
 };
-//changing to stateless functional component
-var Action = function Action(props) {
+//Defaults props
+Header.defaultProps = {
+    title: 'Indecision App'
+
+    //changing to stateless functional component
+};var Action = function Action(props) {
     return React.createElement(
         'div',
         null,
